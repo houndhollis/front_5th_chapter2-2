@@ -34,8 +34,8 @@ export const useCart = () => {
 
   const updateQuantity = (productId: string, newQuantity: number) => {
     setCart((prev) => {
-      const item = prev.find((item) => item.product.id === productId);
-      if (item) {
+      const matchedItem = prev.find((item) => item.product.id === productId);
+      if (matchedItem) {
         return updateCartItemQuantity(prev, productId, newQuantity);
       }
       return prev;
