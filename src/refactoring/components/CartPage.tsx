@@ -40,7 +40,7 @@ export const CartPage = ({ products, coupons }: Props) => {
     }
     return appliedDiscount;
   };
-  console.log("123", products);
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">장바구니</h1>
