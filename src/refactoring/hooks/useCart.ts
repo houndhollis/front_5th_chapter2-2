@@ -11,10 +11,10 @@ export const useCart = () => {
     setCart((prev) => {
       const matchedItem = prev.find((item) => item.product.id === product.id);
       if (matchedItem) {
-        return prev.map((item) =>
-          item.product.id === matchedItem.product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+        return updateCartItemQuantity(
+          prev,
+          product.id,
+          matchedItem.quantity + 1
         );
       }
 
