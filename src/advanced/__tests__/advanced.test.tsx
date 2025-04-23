@@ -4,6 +4,7 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { CartPage } from "../../refactoring/page/CartPage";
 import { AdminPage } from "../../refactoring/page/AdminPage";
 import { Coupon, Product } from "../../types";
+import { getCouponDiscountAmount } from "../../refactoring/models/cart";
 
 const mockProducts: Product[] = [
   {
@@ -262,9 +263,32 @@ describe("advanced > ", () => {
   });
 
   describe("자유롭게 작성해보세요.", () => {
-    test("새로운 유틸 함수를 만든 후에 테스트 코드를 작성해서 실행해보세요", () => {
-      // 곧 할 예정
-      expect(true).toBe(true);
+    const basePrice = 10000;
+    const amountCoupon = {
+      name: "5000원 할인 쿠폰",
+      code: "AMOUNT5000",
+      discountType: "amount",
+      discountValue: 5000,
+    } as Coupon;
+
+    const percentageCoupon = {
+      name: "10% 할인 쿠폰",
+      code: "PERCENT10",
+      discountType: "percentage",
+      discountValue: 50,
+    } as Coupon;
+
+    test("정액 할인 쿠폰으로 해당 금액을 할인한다.", () => {
+      const discountAmount = getCouponDiscountAmount(amountCoupon, basePrice);
+      expect(discountAmount).toBe(5000);
+    });
+
+    test("퍼센트 할인 쿠폰으로 해당 금액을 할인한다.", () => {
+      const discountAmount = getCouponDiscountAmount(
+        percentageCoupon,
+        basePrice
+      );
+      expect(discountAmount).toBe(5000);
     });
 
     test("새로운 hook 함수르 만든 후에 테스트 코드를 작성해서 실행해보세요", () => {
