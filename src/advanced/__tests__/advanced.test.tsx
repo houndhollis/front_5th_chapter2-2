@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { describe, expect, test } from "vitest";
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  within,
+} from "@testing-library/react";
 import { CartPage } from "../../refactoring/page/CartPage";
 import { AdminPage } from "../../refactoring/page/AdminPage";
 import { Coupon, Product } from "../../types";
 import { getCouponDiscountAmount } from "../../refactoring/models/cart";
+import { useCoupons } from "../../refactoring/hooks";
 
 const mockProducts: Product[] = [
   {
@@ -292,8 +300,19 @@ describe("advanced > ", () => {
     });
 
     test("새로운 hook 함수르 만든 후에 테스트 코드를 작성해서 실행해보세요", () => {
-      // 곧 할 예정
-      expect(true).toBe(true);
+      const couponsList = [amountCoupon, percentageCoupon];
+      const { result } = renderHook(() => useCoupons(couponsList));
+
+      act(() => {
+        result.current.removeCoupon("5000원 할인 쿠폰");
+      });
+
+      expect(result.current.coupons[0]).toEqual({
+        name: "10% 할인 쿠폰",
+        code: "PERCENT10",
+        discountType: "percentage",
+        discountValue: 50,
+      });
     });
   });
 });

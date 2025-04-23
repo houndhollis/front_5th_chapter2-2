@@ -8,5 +8,15 @@ export const useCoupons = (initialCoupons: Coupon[]) => {
     setCoupons((prevCoupons) => [...prevCoupons, newCoupon]);
   };
 
-  return { coupons: coupons, addCoupon: handleAddCoupon };
+  const handleRemoveCoupon = (name: string) => {
+    setCoupons((prevCoupons) =>
+      prevCoupons.filter((coupon) => coupon.name !== name)
+    );
+  };
+
+  return {
+    coupons: coupons,
+    addCoupon: handleAddCoupon,
+    removeCoupon: handleRemoveCoupon,
+  };
 };
