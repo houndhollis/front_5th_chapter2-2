@@ -1,6 +1,7 @@
-import { Coupon } from "../../../types";
+import { Coupon } from "../../../../types";
+import { CouponSelect } from "./CouponSelect";
 
-export const CouponSelect = ({
+export const CouponSection = ({
   coupons,
   selectedCoupon,
   applyCoupon,
@@ -18,12 +19,7 @@ export const CouponSelect = ({
       >
         <option value="">쿠폰 선택</option>
         {coupons.map((coupon, index) => (
-          <option key={coupon.code} value={index}>
-            {coupon.name} -{" "}
-            {coupon.discountType === "amount"
-              ? `${coupon.discountValue}원`
-              : `${coupon.discountValue}%`}
-          </option>
+          <CouponSelect key={index} couponIndex={index} coupon={coupon} />
         ))}
       </select>
       {selectedCoupon && (

@@ -2,7 +2,7 @@ import { CartItem as CartItemType, Coupon } from "../../../types";
 import { getAppliedDiscount } from "../../models/cart";
 import { CartItem } from "./CartItem";
 import { CartTotalPrice } from "./CartTotalPrice";
-import { CouponSelect } from "./CouponSelect";
+import { CouponSection } from "./Coupon";
 
 export const CartList = ({
   cart,
@@ -38,7 +38,7 @@ export const CartList = ({
         })}
       </div>
 
-      <CouponSelect
+      <CouponSection
         coupons={coupons}
         selectedCoupon={selectedCoupon}
         applyCoupon={applyCoupon}

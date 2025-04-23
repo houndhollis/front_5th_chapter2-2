@@ -2,7 +2,6 @@ import { Coupon, Product } from "../../types.ts";
 import { CartList } from "../components/Cart/CartList.tsx";
 import { ItemList } from "../components/Cart/ItemList.tsx";
 import { useCart } from "../hooks/index.ts";
-import { getAppliedDiscount } from "../models/cart.ts";
 
 interface Props {
   products: Product[];
