@@ -299,7 +299,7 @@ describe("advanced > ", () => {
       expect(discountAmount).toBe(5000);
     });
 
-    test("새로운 hook 함수르 만든 후에 테스트 코드를 작성해서 실행해보세요", () => {
+    test("5000원 할인 쿠폰을 삭제한다.", () => {
       const couponsList = [amountCoupon, percentageCoupon];
       const { result } = renderHook(() => useCoupons(couponsList));
 
